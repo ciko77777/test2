@@ -1,0 +1,24 @@
+$githubUsername = "ciko77777"
+$githubToken = "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" # Assicurati di avere un token valido con i permessi necessari
+$repositoryOwner = "ciko77777"
+$repositoryName = "test2"
+$filePath = "C:\Utenti\Th3Pr0f\Desktop\file.txt" # Percorso del file che vuoi caricare
+$commitMessage = "Aggiunta di un nuovo file"
+
+$apiUrl = "https://github.com/ciko77777/test2.git"
+
+$headers = @{
+    Authorization = "token $githubToken"
+    Accept = "application/vnd.github.v3+json"
+}
+
+$fileContent = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes($filePath))
+
+$body = @{
+    message = $commitMessage
+    content = $fileContent
+} | ConvertTo-Json
+
+$response = Invoke-RestMethod -Uri $apiUrl -Headers $headers -Method PUT -Body $body
+
+$response
